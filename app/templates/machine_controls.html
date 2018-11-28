@@ -1,0 +1,131 @@
+{% macro distance_slider() -%}
+<div class="form-group">
+  <label for="distanceRange">Distance</label>
+  <input
+    id="distanceRange"
+    class="form-control-range"
+    type="range"
+    orient="vertical"
+    value="50"
+    min="1"
+    max="100"
+    style="writing-mode: bt-lr; /* IE */
+      -webkit-appearance: slider-vertical; /* WebKit */
+      height:100px;"
+    list="distanceRangeStepList"
+  />
+  <datalist id="distanceRangeStepList">
+    <option>1</option>
+    <option>25</option>
+    <option>50</option>
+    <option>75</option>
+    <option>100</option>
+  </datalist>
+</div>
+<div class="input-group mb-2">
+  <input type="text" class="form-control p-1" id="distanceRangeValue" />
+  <div class="input-group-text p-1">mm</div>
+</div>
+{%- endmacro %}
+
+<!---->
+
+{% macro speed_slider() -%}
+<div class="form-group">
+  <label for="speedRange">Speed</label>
+  <input
+    id="speedRange"
+    class="form-control-range"
+    type="range"
+    orient="vertical"
+    value="25"
+    min="1"
+    max="100"
+    style="writing-mode: bt-lr; /* IE vertical */
+        -webkit-appearance: slider-vertical; /* WebKit vertical */
+        height:100px;"
+    list="speedRangeStepList"
+  />
+  <datalist id="speedRangeStepList">
+    <option value="1"> </option>
+    <option value="25"> </option>
+    <option value="50"> </option>
+    <option value="75"> </option>
+    <option value="100"> </option>
+  </datalist>
+</div>
+<div class="input-group mb-2">
+  <input type="text" class="form-control p-1" id="speedRangeValue" />
+  <div class="input-group-text p-1">%</div>
+</div>
+{%- endmacro %}
+
+<!---->
+
+{% macro jog_buttons() -%}
+<div class="btn-group-vertical">
+  <button
+    id="jogUp"
+    type="button"
+    class="btn btn-outline-secondary p-0"
+    style="height: 48px; width: 48px; margin-left: 47px"
+  >
+    <i class="fas fa-caret-up fa-2x"></i>
+  </button>
+  <div class="btn-group">
+    <button
+      id="jogLeft"
+      type="button"
+      class="btn btn-outline-secondary p-0 rounded-left"
+      style="height: 48px; width: 48px;"
+    >
+      <i class="fas fa-caret-left fa-2x"></i>
+    </button>
+    <button
+      id="jogPark"
+      type="button"
+      class="btn btn-outline-secondary p-0"
+      style="height: 48px; width: 48px;"
+    >
+      <i class="fas fa-parking fa-2x"></i>
+    </button>
+    <button
+      id="jogRight"
+      type="button"
+      class="btn btn-outline-secondary p-0 rounded-right"
+      style="height: 48px; width: 48px;"
+    >
+      <i class="fas fa-caret-right fa-2x"></i>
+    </button>
+  </div>
+  <button
+    id="jogDown"
+    type="button"
+    class="btn btn-outline-secondary p-0"
+    style="height: 48px; width: 48px; margin-left: 47px"
+  >
+    <i class="fas fa-caret-down fa-2x"></i>
+  </button>
+</div>
+{%- endmacro %}
+
+<!---->
+
+{% macro machine_controls() -%}
+<div class="d-flex flex-row bd-highlight mb-3">
+  <div class="px-1">
+    <button
+      id="home"
+      type="button"
+      class="btn btn-outline-secondary p-0"
+      style="height: 48px; width: 48px;"
+    >
+      <i class="fas fa-home fa-2x"></i>
+    </button>
+  </div>
+
+  <div class="px-1">{{ jog_buttons() }}</div>
+  <div class="px-1">{{ distance_slider() }}</div>
+  <div class="px-1">{{ speed_slider() }}</div>
+</div>
+{%- endmacro %}

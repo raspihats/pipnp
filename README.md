@@ -1,2 +1,2 @@
 # pipnp
-Web based pick n place for Raspberry Pi
+Web based Pick n Place for Raspberry Pi

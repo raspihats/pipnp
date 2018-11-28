@@ -1,0 +1,8 @@
+{% macro card(name, content='') -%}
+<div class="card border-secondary mb-3">
+  {% if name %}
+  <div class="card-header">{{ name }}</div>
+  {%endif %}
+  <div class="card-body text-secondary">{{ content }}</div>
+</div>
+{%- endmacro %}

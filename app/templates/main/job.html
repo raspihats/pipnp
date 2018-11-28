@@ -1,0 +1,69 @@
+{% macro job() -%}
+<div class="border-bottom py-2 bg-light">
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group">
+        <select id="jobSelector" class="custom-select">
+          <option selected disabled>Choose...</option>
+        </select>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fas fa-play"></i>
+          </button>
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fas fa-stop"></i>
+          </button>
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-outline-secondary">
+        <i class="fas fa-upload">Upload</i>
+      </button>
+    </div>
+    <div class="col-3">
+      <div class="input-group">
+        <select class="custom-select">
+          <option value="1">Camera</option>
+          <option value="2">Nozzle-1</option>
+          <option value="3">Nozzle-1</option>
+        </select>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary">
+            <i class="fas fa-crosshairs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table id="jobDetails" class="table table-hover table-sm border d-none">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Value</th>
+      <th scope="col">Package</th>
+      <th scope="col">X</th>
+      <th scope="col">Y</th>
+      <th scope="col">θ</th>
+      <th scope="col">Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--
+      <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    -->
+  </tbody>
+</table>
+{%- endmacro %}

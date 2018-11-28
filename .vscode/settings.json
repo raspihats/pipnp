@@ -1,0 +1,22 @@
+{
+  "python.pythonPath": "/home/fcos/.virtualenvs/pipnp/bin/python",
+  "sshextension.serverList": [
+    {
+      "name": "Pi",
+      "host": "192.168.100.10",
+      "port": 22,
+      "username": "pi",
+      // "password": "raspberry",
+      // "privateKey": "D:\\id_rsa",
+      // "project": {
+      //     "D:/projects/project": "/home/pi/git_source/backend",
+      // },
+      "path": "~/git_source/pipnp/"
+    }
+  ],
+  "sshextension.customCommands": [
+    "cd ~/git_source/pipnp/",
+    "workon pipnp",
+    "python run.py"
+  ]
+}
