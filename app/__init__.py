@@ -38,37 +38,33 @@ def index():
     return render_template('index.html')
 
 
-class SioHandler(logging.StreamHandler):
+class SocketIOHandler(logging.StreamHandler):
     def emit(self, message):
-        print(self.format(message))
         socketio.emit('log', self.format(message))
 
 
-logging.basicConfig(
-    format='%(asctime)s %(levelname)s %(message)s',
-    level=logging.DEBUG,
-    datefmt='%m/%d/%Y %I:%M:%S %p'
-)
+logger = logging.getLogger('fe_logger')
+logger.handlers = []
 
-logger = logging.getLogger('simple_example')
-ch = SioHandler()
+ch = SocketIOHandler()
 ch.setLevel(logging.INFO)
 formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    '%(asctime)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
+logger.setLevel(logging.INFO)
 
 
 @socketio.on('connect')
 def test_connect():
-    socketio.emit('log', 'Connected')
+    logger.info('Connected')
 
 
 def run_app():
     try:
         machine.logger = logger
-        machine.open()
-        machine.home()
+        # machine.open()
+        # machine.home()
         socketio.run(app, host='0.0.0.0', port=5000)
     finally:
         print("Finally_app_id: ", '{}'.format(id(app)))

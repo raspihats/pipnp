@@ -18,15 +18,14 @@ class Machine(object):
 
     def open(self):
         self.grbl.open("/dev/ttyAMA0")
-        if self.logger is not None:
-            self.logger.info(self.grbl.exec("?"))
+        self.logger.info(self.grbl.exec("?"))
 
     def start_vacuum_pump(self):
-        # self.logger.info("starting vacuum pump...")
+        self.logger.info("starting vacuum pump...")
         self.grbl.exec("M3 S1000")
 
     def stop_vacuum_pump(self):
-        # self.logger.info("stopping vacuum pump...")
+        self.logger.info("stopping vacuum pump...")
         self.grbl.exec("M5")
 
     @property
@@ -36,7 +35,7 @@ class Machine(object):
         if token not in response:
             raise Exception()
         else:
-            # <Alarm|MPos:0.000,0.000,0.000,0.000,0.000|FS:0,0> ok
+            # <Idle|MPos:0.000,0.000,0.000,0.000,0.000|FS:0,0> ok
             coord = response.split(token)[1].split('|')[0].split(',')
             return {
                 'x': -float(coord[0]),
@@ -73,14 +72,12 @@ class Machine(object):
         self.move(id, coord)
         if 'n1' in id:
             self.grbl.exec("G1Z-85F1000")   # nozzle down
-            # self.grbl.exec_rt(RT_COMMANDS.TOGGLE_COOLANT_FLOOD)
             self.grbl.exec("G4 P0.300")     # pause
             self.grbl.exec("M9")            # disable nozzle vacuum
             self.grbl.exec("G4 P0.300")     # pause
             self.grbl.exec("G1Z-45F25000")
         if 'n2' in id:
             self.grbl.exec("G1Z-5")
-            # self.grbl.exec_rt(RT_COMMANDS.TOGGLE_COOLANT_MIST)
             self.grbl.exec("G1Z-45")
 
     def _determine_origin(self, job):
@@ -122,18 +119,19 @@ class Machine(object):
         fiducials = self._determine_fiducials(job)
 
         try:
-            self.start_vacuum_pump()
+            # self.start_vacuum_pump()
             steps = [step for step in job['steps']
                      if step['type'] == 'component']
             for step in steps:
                 # determine feeder
-                self.pick('n1', {'x': 10, 'y': 10})
+                # self.pick('n1', {'x': 10, 'y': 10})
                 place_point = {'x': origin['x'] +
                                step['x'], 'y': origin['y'] + step['y']}
-                self.place('n1', place_point)
+                # self.place('n1', place_point)
         finally:
-            self.stop_vacuum_pump()
-            self.move('n1', {'x': 5, 'y': 5})
+            # self.stop_vacuum_pump()
+            # self.move('n1', {'x': 5, 'y': 5})
+            pass
 
     def close(self):
         self.grbl.close()

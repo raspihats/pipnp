@@ -1,4 +1,4 @@
-# from flask import current_app as app
+from flask import current_app as app
 import os
 import json
 import glob
@@ -40,7 +40,7 @@ def get_job_list():
 
 def get_job(name):
 
-    # job_file = app.config['JOBS_DIR'] + '/' + name + '.json'
+    job_file = app.config['JOBS_DIR'] + '/' + name + '.json'
     job_file = 'jobs/' + name + '.json'
 
     if not os.path.isfile(job_file):

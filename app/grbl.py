@@ -35,7 +35,7 @@ class Grbl(object):
                 response += str(response_bytes, 'utf-8')
 
             if "ok" in response:
-                print("Duration: {}".format(time.time() - start_time))
+                # print("Duration: {}".format(time.time() - start_time))
                 break
 
             if (time.time() - start_time) > timeout:
