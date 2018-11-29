@@ -1,7 +1,7 @@
 from time import sleep
 from flask_socketio import send
 from .grbl import Grbl, RT_COMMANDS
-from .service.job_service import get_job
+# from .service.job_service import get_job
 
 
 class Machine(object):
@@ -112,7 +112,8 @@ class Machine(object):
         self.logger.info("Starting job '{}'".format(name))
         job = {
             'name': name,
-            'steps': get_job(name)
+            # 'steps': get_job(name)
+            'steps': []
         }
 
         origin = self._determine_origin(job)

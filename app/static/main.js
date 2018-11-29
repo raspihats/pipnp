@@ -158,33 +158,90 @@ function displayJobDetails(name) {
 //   });
 // }
 
-function displayJobSelectorOptions() {
-  $.ajax({
-    url: "http://192.168.100.10:5000/api/job"
-  }).then(data => {
+// function displayJobSelectorOptions() {
+//   $.ajax({
+//     url: "http://192.168.100.10:5000/api/job"
+//   }).then(data => {
+//     let select = $("#jobSelector");
+//     select.empty();
+//     select.append("<option selected disabled>Choose...</option>");
+//     $.each(data, function(index, value) {
+//       select.append("<option>" + value + "</option>");
+//     });
+//     select.on("change", event => {
+//       displayJobDetails(select.val());
+//       // event.preventDefault();
+//       select.blur();
+//     });
+//   });
+// }
+
+const JOB = (() => {
+  function displayJobList(list, socket) {
     let select = $("#jobSelector");
     select.empty();
     select.append("<option selected disabled>Choose...</option>");
-    $.each(data, function(index, value) {
+    $.each(list, function(index, value) {
       select.append("<option>" + value + "</option>");
     });
     select.on("change", event => {
-      displayJobDetails(select.val());
-      // event.preventDefault();
+      socket.emit("get_job_details", select.val());
       select.blur();
     });
-  });
-}
+  }
+
+  function displayJobDetails(data) {
+    let tbody = $($("#jobDetails").find("tbody"));
+    tbody.empty();
+    $.each(data, function(index, value) {
+      let tr = $("<tr>");
+      tr.append('<th scope="row">' + value.name + "</th>");
+      tr.append("<td>" + value.value + "</td>");
+      tr.append("<td>" + value.package + "</td>");
+      tr.append("<td>" + value.x + "</td>");
+      tr.append("<td>" + value.y + "</td>");
+      tr.append("<td>" + value.angle + "</td>");
+      tr.append("<td>" + value.type + "</td>");
+      // add onclick handler
+      tr.on("click", () => {
+        // diplayJob(value.name);
+      });
+      tbody.append(tr);
+    });
+    $("#jobDetails").removeClass("d-none");
+  }
+
+  function init(socket) {
+    socket.on("job_list", function(data) {
+      displayJobList(data, socket);
+    });
+
+    socket.on("job_details", function(data) {
+      displayJobDetails(data);
+    });
+  }
+
+  function updateJobList(socket) {
+    socket.emit("get_job_list");
+  }
+
+  function updateJobDetails(socket) {
+    socket.emit("get_job_list");
+  }
+
+  return {
+    init: init,
+    updateJobList: updateJobList,
+    updateJobDetails: updateJobDetails
+  };
+})();
 
 $(document).ready(function() {
-  var socket = io.connect("http://192.168.100.10:5000");
+  var socket = io.connect("/");
 
   socket.on("connect", function() {
-    // socket.send("connected :)");
-  });
-
-  socket.on("message", function(msg) {
-    alert(msg);
+    JOB.init(socket);
+    JOB.updateJobList(socket);
   });
 
   socket.on("log", function(msg) {
@@ -195,7 +252,7 @@ $(document).ready(function() {
     // alert("Hello! I am an alert box!!");
   });
 
-  displayJobSelectorOptions();
+  // displayJobSelectorOptions();
 
   MACHINE_CONTROLS.init();
 });

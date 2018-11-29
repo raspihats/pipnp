@@ -1,41 +1,16 @@
 # Import flask and template operators
 import logging
-from flask import Flask, Blueprint, render_template
-from flask_restplus import Api, apidoc
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_socketio import SocketIO
-from .controller.job_controller import api as job_ns
-from .controller.position_controller import api as position_ns
 from .machine import machine
+from .controller_new import register_events
 
-# Define the WSGI application object
 app = Flask(__name__)
-
-# Configurations
 app.config.from_object('config')
-
-
-blueprint = Blueprint('api', __name__, url_prefix='/api')
-api = Api(blueprint)
-
-
-@api.documentation
-def swagger_ui():
-    return apidoc.ui_for(api)
-
-
-app.register_blueprint(blueprint)
-
-api.add_namespace(job_ns)
-api.add_namespace(position_ns)
 
 Bootstrap(app)
 socketio = SocketIO(app)
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 
 class SocketIOHandler(logging.StreamHandler):
@@ -54,10 +29,17 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 logger.setLevel(logging.INFO)
 
+register_events(socketio, logger)
 
-@socketio.on('connect')
-def test_connect():
-    logger.info('Connected')
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+# @socketio.on('connect')
+# def on_connect():
+#     logger.info('Connected')
 
 
 def run_app():
