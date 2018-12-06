@@ -11,7 +11,12 @@
     max="100"
     style="writing-mode: bt-lr; /* IE */
       -webkit-appearance: slider-vertical; /* WebKit */
-      height:100px;"
+      height:100px;
+      -moz-transform: scale(-1, 1);
+      -webkit-transform: scale(-1, 1);
+      -o-transform: scale(-1, 1);
+      -ms-transform: scale(-1, 1);
+      transform: scale(-1, 1);"
     list="distanceRangeStepList"
   />
   <datalist id="distanceRangeStepList">
@@ -43,7 +48,12 @@
     max="100"
     style="writing-mode: bt-lr; /* IE vertical */
         -webkit-appearance: slider-vertical; /* WebKit vertical */
-        height:100px;"
+        height:100px;
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);"
     list="speedRangeStepList"
   />
   <datalist id="speedRangeStepList">
@@ -62,10 +72,11 @@
 
 <!---->
 
-{% macro jog_buttons() -%}
+{% macro xy_buttons() -%}
+<div class="px-1 text-center"><span class="h3 font-weight-bold">X/Y</span></div>
 <div class="btn-group-vertical">
   <button
-    id="jogUp"
+    id="yUp"
     type="button"
     class="btn btn-outline-secondary p-0"
     style="height: 48px; width: 48px; margin-left: 47px"
@@ -74,7 +85,7 @@
   </button>
   <div class="btn-group">
     <button
-      id="jogLeft"
+      id="xDown"
       type="button"
       class="btn btn-outline-secondary p-0 rounded-left"
       style="height: 48px; width: 48px;"
@@ -82,7 +93,7 @@
       <i class="fas fa-caret-left fa-2x"></i>
     </button>
     <button
-      id="jogPark"
+      id="xyPark"
       type="button"
       class="btn btn-outline-secondary p-0"
       style="height: 48px; width: 48px;"
@@ -90,7 +101,7 @@
       <i class="fas fa-parking fa-2x"></i>
     </button>
     <button
-      id="jogRight"
+      id="xUp"
       type="button"
       class="btn btn-outline-secondary p-0 rounded-right"
       style="height: 48px; width: 48px;"
@@ -99,7 +110,7 @@
     </button>
   </div>
   <button
-    id="jogDown"
+    id="yDown"
     type="button"
     class="btn btn-outline-secondary p-0"
     style="height: 48px; width: 48px; margin-left: 47px"
@@ -111,21 +122,105 @@
 
 <!---->
 
-{% macro machine_controls() -%}
-<div class="d-flex flex-row bd-highlight mb-3">
-  <div class="px-1">
+{% macro z_buttons() -%}
+<div class="px-1 text-center"><span class="h3 font-weight-bold">Z</span></div>
+<div class="btn-group-vertical">
+  <button
+    id="zUp"
+    type="button"
+    class="btn btn-outline-secondary p-0"
+    style="height: 48px; width: 48px;"
+  >
+    <i class="fas fa-caret-up fa-2x"></i>
+  </button>
+
+  <button
+    id="zPark"
+    type="button"
+    class="btn btn-outline-secondary p-0"
+    style="height: 48px; width: 48px;"
+  >
+    <i class="fas fa-parking fa-2x"></i>
+  </button>
+
+  <button
+    id="zDown"
+    type="button"
+    class="btn btn-outline-secondary p-0"
+    style="height: 48px; width: 48px;"
+  >
+    <i class="fas fa-caret-down fa-2x"></i>
+  </button>
+</div>
+{%- endmacro %}
+
+<!---->
+
+{% macro rot_axis_buttons(axis) -%}
+<div class="d-flex flex-row">
+  <div class="px-1 text-center">
+    <span class="h3 font-weight-bold">{{ axis | upper }}</span>
+  </div>
+  <div class="btn-group">
     <button
-      id="home"
+      id="{{ axis | lower }}Ccw"
       type="button"
       class="btn btn-outline-secondary p-0"
       style="height: 48px; width: 48px;"
     >
-      <i class="fas fa-home fa-2x"></i>
+      <i class="fas fa-undo fa-2x"></i>
+    </button>
+
+    <button
+      id="{{ axis | lower }}Park"
+      type="button"
+      class="btn btn-outline-secondary p-0"
+      style="height: 48px; width: 48px;"
+    >
+      <i class="fas fa-parking fa-2x"></i>
+    </button>
+
+    <button
+      id="{{ axis | lower }}Cw"
+      type="button"
+      class="btn btn-outline-secondary p-0"
+      style="height: 48px; width: 48px;"
+    >
+      <i class="fas fa-undo fa-2x fa-flip-horizontal"></i>
     </button>
   </div>
+</div>
+{%- endmacro %}
 
-  <div class="px-1">{{ jog_buttons() }}</div>
-  <div class="px-1">{{ distance_slider() }}</div>
-  <div class="px-1">{{ speed_slider() }}</div>
+<!---->
+
+{% macro home_button() -%}
+<button
+  id="home"
+  type="button"
+  class="btn btn-outline-secondary p-0"
+  style="height: 48px; width: 48px;"
+>
+  <i class="fas fa-home fa-2x"></i>
+</button>
+{%- endmacro %}
+
+<!---->
+
+{% macro machine_controls() -%}
+<div class="d-flex flex-row">
+  <div class="px-2">{{ home_button() }}</div>
+
+  <div>
+    <div class="d-flex flex-row">
+      <div class="p-2">{{ xy_buttons() }}</div>
+      <div class="p-2">{{ z_buttons() }}</div>
+    </div>
+    <div class="p-2">{{ rot_axis_buttons("A") }}</div>
+    <div class="p-2">{{ rot_axis_buttons("B") }}</div>
+  </div>
+
+  <div class="p-2">{{ distance_slider() }}</div>
+  <div class="p-2">{{ speed_slider() }}</div>
 </div>
 {%- endmacro %}

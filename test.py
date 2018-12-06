@@ -1,41 +1,36 @@
-import serial
-import time
+import json
 
 
-def send(port, command, timeout=10):
-    start_time = time.time()
-    port.reset_input_buffer()
-    port.write((command + '\n').encode())
-    response = ""
-    while(True):
-        time.sleep(0.001)
-
-        while port.in_waiting > 0:
-            response_bytes = port.read(port.in_waiting)
-            response += str(response_bytes, 'utf-8')
-
-        if "ok" in response:
-            print("Duration: {}".format(time.time() - start_time))
-            break
-
-        if (time.time() - start_time) > timeout:
-            raise Exception(
-                'Timeout\ncommand: {}\nresponse: {}'.format(command, response))
-
-    return response
+def determine_type(name, value, package):
+    if "fiducial" in name.lower() or "fiducial" in package.lower():
+        return "fiducial"
+    if "np" in value.lower() or "dnp" in value.lower():
+        return "ignore"
+    return "component"
 
 
-def main():
-    port = None
-    try:
-        port = serial.Serial(
-            port="/dev/ttyAMA0", baudrate=115200, bytesize=8, parity='N', stopbits=1)
-        response = send(port, "?")
-        print(response)
-    finally:
-        if port is not None:
-            port.close()
+def import_file(file):
+    steps = []
+    with open(file, 'r') as infile:
+        for line in infile:
+            try:
+                print("processing: {}".format(line.strip()))
+                parts = line.strip().split(',')
+                steps.append({
+                    'name': parts[0],
+                    'value': parts[4],
+                    'package': parts[5],
+                    'x': float(parts[1]),
+                    'y': float(parts[2]),
+                    'angle': float(parts[3]),
+                    'type': determine_type(parts[0], parts[4], parts[5])
+                })
+            except Exception as e:
+                raise Exception("Line: '{}' {}".format(line, str(e)))
+
+    with open(file + ".json", 'w') as outfile:
+        json.dump(steps, outfile)
 
 
 if __name__ == '__main__':
-    main()
+    import_file("/home/fcos/Desktop/DI16ac.mnt")

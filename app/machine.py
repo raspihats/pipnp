@@ -1,7 +1,6 @@
 from time import sleep
 from flask_socketio import send
 from .grbl import Grbl, RT_COMMANDS
-# from .service.job_service import get_job
 
 
 class Machine(object):
@@ -9,6 +8,14 @@ class Machine(object):
         'n1': {'type': 'nozzle', 'offset': {'x': 0, 'y': 0}},
         'n2': {'type': 'nozzle', 'offset': {'x': 34, 'y': 0}},
         'c1': {'type': 'camera', 'offset': {'x': 0, 'y': 50}}
+    }
+
+    AXIS = {
+        'x': {'limit': 400, 'speed': 25000, 'park': 5},
+        'y': {'limit': 400, 'speed': 25000, 'park': 5},
+        'z': {'limit': 90, 'speed': 25000, 'park': 45},
+        'a': {'limit': 360, 'speed': 25000, 'park': 0},
+        'b': {'limit': 360, 'speed': 25000, 'park': 0}
     }
 
     def __init__(self, logger=None):
@@ -50,10 +57,42 @@ class Machine(object):
         self.grbl.exec("G1F25000")
         self.grbl.exec("G1Z-45")
 
+    def park(self, data):
+        g_code = "G1"
+        temp = []
+        for axis in self.AXIS.keys():
+            if axis in data['axis']:
+                temp.append(axis)
+                g_code += "{}{}".format(axis.upper(), -self.AXIS[axis]['park'])
+        feed_rate = data['speed'] * self.AXIS[temp[0]]['speed'] / 100
+        g_code += "F{}".format(feed_rate)
+        self.grbl.exec(g_code)
+
+    def jog(self, step):
+        c_position = self.position
+        g_code = "G1"
+        for axis in self.AXIS.keys():
+            if axis in step:
+                temp = c_position[axis] + step[axis]
+                if 0 <= temp <= self.AXIS[axis]['limit']:
+                    g_code += "{}{}".format(axis.upper(), -temp)
+                else:
+                    raise Exception("Jog requested step:{} exceeds limits on {} axis, current: {}, requested: {}, max: {}".format(
+                        step[axis], axis, c_position[axis], temp, self.AXIS[axis]['limit']))
+        feed_rate = step['speed'] * self.AXIS[axis]['speed'] / 100
+        g_code += "F{}".format(feed_rate)
+        self.grbl.exec(g_code)
+
     def move(self, id, coord):
         x = coord['x'] - self.HEAD[id]['offset']['x']
         y = coord['y'] - self.HEAD[id]['offset']['y']
         self.grbl.exec("G1X{}Y{}".format(-x, -y))
+
+    def park_xy(self):
+        self.move('n1', {'x': 5, 'y': 5})
+
+    def park_z(self):
+        self.move('n1', {'x': 5, 'y': 5})
 
     def pick(self, id, coord):
         self.move(id, coord)

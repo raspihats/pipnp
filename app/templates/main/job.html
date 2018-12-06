@@ -1,3 +1,61 @@
+{% macro job_details() -%}
+<div class="pt-2 pb-1">
+  <button
+    type="button"
+    class="btn btn-outline-secondary d-none"
+    id="addJobStep"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Add job step"
+  >
+    <i class="fas fa-plus"></i>
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary d-none"
+    id="removeJobStep"
+    data-toggle="tooltip"
+    data-placement="top"
+    title="Remove job step"
+    disabled
+  >
+    <i class="fas fa-trash"></i>
+  </button>
+</div>
+<table id="jobSteps" class="table table-hover table-sm border d-none">
+  <thead>
+    <tr>
+      <!--
+        <th scope="col">Feeder</th>
+        <th scope="col">Nozzle</th>
+      -->
+      <th scope="col">Name</th>
+      <th scope="col">Value</th>
+      <th scope="col">Package</th>
+      <th scope="col">X</th>
+      <th scope="col">Y</th>
+      <th scope="col">θ</th>
+      <th scope="col">Type</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--
+      <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    -->
+  </tbody>
+</table>
+{%- endmacro %}
+
+<!---->
+
 {% macro job() -%}
 <div class="border-bottom py-2 bg-light">
   <div class="row">
@@ -7,8 +65,15 @@
           <option selected disabled>Choose...</option>
         </select>
         <div class="input-group-append">
-          <button type="button" class="btn btn-outline-secondary">
+          <button type="button" class="btn btn-outline-secondary" id="startJob">
             <i class="fas fa-play"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary d-none"
+            id="pauseJob"
+          >
+            <i class="fas fa-pause"></i>
           </button>
           <button type="button" class="btn btn-outline-secondary">
             <i class="fas fa-stop"></i>
@@ -40,30 +105,6 @@
     </div>
   </div>
 </div>
+{{ job_details() }}
 
-<table id="jobDetails" class="table table-hover table-sm border d-none">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Value</th>
-      <th scope="col">Package</th>
-      <th scope="col">X</th>
-      <th scope="col">Y</th>
-      <th scope="col">θ</th>
-      <th scope="col">Operation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!--
-      <tr>
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    -->
-  </tbody>
-</table>
 {%- endmacro %}

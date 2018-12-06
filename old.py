@@ -25,18 +25,6 @@ def handle_message(message):
 #     return Response(get_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-# def get_frame():
-
-#     camera_port = 1
-#     camera = cv2.VideoCapture(camera_port)  # this makes a web cam object
-
-#     while True:
-#         ret, frame = camera.read()
-#         ret, jpeg = cv2.imencode('.jpg', frame)
-#         yield (b'--frame\r\n'
-#                b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
-#     del(camera)
-
 def run_job(job_name):
     import json
 
