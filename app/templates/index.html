@@ -24,12 +24,12 @@
 {% block navbar %}<!---->
 <div class="nav bg-info text-dark mb-3">
   <span class="m-0 p-3 text-light"
-    ><strong>OpenPlacer - a web based pick n place controller</strong></span
+    ><strong>PiPnP - a web based pick n place controller</strong></span
   >
   <form class="form-inline ml-auto mr-3">
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="droX">X</span>
+        <span class="input-group-text" id="droXLabel">X</span>
       </div>
       <input
         type="text"
@@ -37,12 +37,13 @@
         maxlength="5"
         size="5"
         value="300.000"
-        aria-describedby="droX"
+        id="droX"
+        aria-describedby="droXLabel"
       />
     </div>
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="droY">Y</span>
+        <span class="input-group-text" id="droYLabel">Y</span>
       </div>
       <input
         type="text"
@@ -50,12 +51,13 @@
         maxlength="5"
         size="5"
         value="0.000"
-        aria-describedby="droY"
+        id="droY"
+        aria-describedby="droYLabel"
       />
     </div>
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="droZ">Z</span>
+        <span class="input-group-text" id="droZLabel">Z</span>
       </div>
       <input
         type="text"
@@ -63,12 +65,13 @@
         maxlength="5"
         size="5"
         value="0.000"
-        aria-describedby="droZ"
+        id="droZ"
+        aria-describedby="droZLabel"
       />
     </div>
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="droA">A</span>
+        <span class="input-group-text" id="droALabel">A</span>
       </div>
       <input
         type="text"
@@ -76,12 +79,13 @@
         maxlength="5"
         size="5"
         value="0.000"
-        aria-describedby="droA"
+        id="droA"
+        aria-describedby="droALabel"
       />
     </div>
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="droB">B</span>
+        <span class="input-group-text" id="droBLabel">B</span>
       </div>
       <input
         type="text"
@@ -89,7 +93,8 @@
         maxlength="5"
         size="5"
         value="0.000"
-        aria-describedby="droB"
+        id="droB"
+        aria-describedby="droBLabel"
       />
     </div>
   </form>
@@ -150,10 +155,6 @@
         </script>
     </head>
     <body>
-      <h1>Live Streaming</h1>
-      <h3><img src="{{ url_for('video_feed') }}" width="90%" /></h3>
-      <hr />
-      <p>@2018 Developed by MJRoBot.org</p>
     </body>
   </html>
 -->

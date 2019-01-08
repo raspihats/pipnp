@@ -1,5 +1,7 @@
 {% from 'main/job.html' import job with context %}
 <!---->
+{% from 'main/feeders.html'import feeders with context %}
+<!---->
 {% macro main() -%}
 <div class="card border-secondary mb-3">
   <!-- <div class="card-header"> -->
@@ -15,7 +17,7 @@
           data-toggle="tab"
           href="#jobs"
           role="tab"
-          aria-controls="home"
+          aria-controls="job"
           aria-selected="true"
           >Job</a
         >
@@ -27,7 +29,7 @@
           data-toggle="tab"
           href="#feeders"
           role="tab"
-          aria-controls="profile"
+          aria-controls="feeders"
           aria-selected="false"
           >Feeders</a
         >
@@ -39,7 +41,7 @@
           data-toggle="tab"
           href="#log"
           role="tab"
-          aria-controls="contact"
+          aria-controls="log"
           aria-selected="false"
           >Log</a
         >
@@ -61,7 +63,7 @@
         role="tabpanel"
         aria-labelledby="feeders-tab"
       >
-        feeders
+        {{ feeders() }}
       </div>
       <div
         class="tab-pane fade"

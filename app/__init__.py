@@ -5,8 +5,8 @@ from flask_bootstrap import Bootstrap
 from flask_socketio import SocketIO
 from .machine import machine
 # from .controller_new import register_events
-from .controller import Position, Job
-from gevent import sleep
+from .controller import Status, Position, Actuators, Job, Feeders
+import gevent
 import cv2
 
 app = Flask(__name__)
@@ -34,8 +34,11 @@ app.logger.setLevel(logging.DEBUG)
 
 # register_events(socketio, logger)
 
+socketio.on_namespace(Status('/status'))
 socketio.on_namespace(Position('/position'))
+socketio.on_namespace(Actuators('/actuators'))
 socketio.on_namespace(Job('/job'))
+socketio.on_namespace(Feeders('/feeders'))
 
 
 @app.route('/')
@@ -45,7 +48,8 @@ def index():
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(get_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return ""
+    # return Response(get_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 def get_frame():
@@ -54,7 +58,7 @@ def get_frame():
     while True:
         ret, frame = camera.read()
         ret, jpeg = cv2.imencode('.jpg', frame)
-        sleep(0.02)
+        gevent.sleep(0.02)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n')
     del(camera)
@@ -64,13 +68,20 @@ def get_frame():
 # def on_connect():
 #     logger.info('Connected')
 
+# def update_status():
+#     while True:
+#         status = {"machine_state": "Idle",
+#                   "current_position": {'x': 0, 'y': 0}}
+#         socketio.emit('update', status)
+#         print('here')
+#         gevent.sleep(0.2)
+
 
 def run_app():
     try:
         machine.logger = app.logger
-        machine.open()
-        machine.home()
+        # machine.open()
         socketio.run(app, host='0.0.0.0', port=5000)
     finally:
         print("Finally_app_id: ", '{}'.format(id(app)))
-        machine.close()
+        # machine.close()

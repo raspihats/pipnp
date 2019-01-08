@@ -1,0 +1,66 @@
+{% macro feeders() -%}
+<div class="pt-2 pb-1">
+  <table id="feedersTable" class="table table-hover table-sm border d-none">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Component</th>
+        <th scope="col">Size</th>
+        <th scope="col">Remaining</th>
+        <th scope="col">Point</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="card rounded-0">
+    <div class="card-header my-0 p-0" id="headingOne">
+      <div class="row no-gutters pl-2 font-weight-bold">
+        <div class="col-3">Name</div>
+        <div class="col-2">Type</div>
+        <div class="col-3">Component</div>
+        <div class="col-1">Size</div>
+        <div class="col-1">Rem.</div>
+        <div class="col-2">Point</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="feedersAccordion">
+    <div class="card rounded-0">
+      <div class="card-header my-0 p-0" id="headingOne">
+        <div class="row pl-2 no-gutters align-items-center">
+          <div class="col-3">
+            <button
+              class="btn btn-link p-0"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              StripFeeder #1
+            </button>
+          </div>
+          <div class="col-2">StripFeeder</div>
+          <div class="col-3"></div>
+          <div class="col-1">48</div>
+          <div class="col-1">48</div>
+          <div class="col-2">{123.11, 124.23, 23.00}</div>
+        </div>
+      </div>
+
+      <div
+        id="collapseOne"
+        class="collapse"
+        aria-labelledby="headingOne"
+        data-parent="#feedersAccordion"
+      >
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- endmacro %}

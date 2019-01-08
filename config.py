@@ -8,6 +8,9 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 # Job files directory
 JOBS_DIR = os.path.join(BASE_DIR, "jobs")
 
+# Feeders file
+FEEDERS_FILE = os.path.join(BASE_DIR, "feeders.json")
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'dk_s*lpr&hwp!m&_#7wk@5m32^i%(=bth+=gv8j&c5+!iv=*ho'
 

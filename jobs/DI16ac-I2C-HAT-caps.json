@@ -1,0 +1,173 @@
+[
+  {
+    "type": "origin",
+    "x": 84.16,
+    "value": "origin",
+    "angle": 0,
+    "package": "origin",
+    "name": "ORIGIN",
+    "y": 50.0
+  },
+  {
+    "type": "fiducial",
+    "x": 10.64,
+    "value": "FIDUCIAL1X3",
+    "angle": 0,
+    "package": "FIDUCIAL-1X3",
+    "name": "FID1",
+    "y": 2.22
+  },
+  {
+    "type": "fiducial",
+    "x": 83.03,
+    "value": "FIDUCIAL1X3",
+    "angle": 0,
+    "package": "FIDUCIAL-1X3",
+    "name": "FID2",
+    "y": 45.56
+  },
+  {
+    "type": "component",
+    "x": 8.26,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C1",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 13.18,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C2",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 18.1,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C3",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 23.02,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C4",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 28.26,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C5",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 33.18,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C6",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 38.1,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C7",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 43.02,
+    "value": "10nF",
+    "angle": 90,
+    "package": "CAP-0603",
+    "name": "C8",
+    "y": 12.38
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C9",
+    "y": 12.54
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C10",
+    "y": 17.46
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C11",
+    "y": 22.38
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C12",
+    "y": 27.3
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C13",
+    "y": 32.54
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C14",
+    "y": 37.47
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C15",
+    "y": 42.39
+  },
+  {
+    "type": "component",
+    "x": 72.71,
+    "value": "10nF",
+    "angle": 0,
+    "package": "CAP-0603",
+    "name": "C16",
+    "y": 47.31
+  }
+]

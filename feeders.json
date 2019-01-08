@@ -1,0 +1,235 @@
+[
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 1",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "5.6K",
+      "package": "1206",
+      "type": "resistor",
+      "tolerance": "1%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 136.5, "x": 39.0, "z": 23 },
+    "name": "SripFeeder 2",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "10nF",
+      "voltage": "50V",
+      "package": "0603",
+      "type": "capacitor",
+      "tolerance": "10%"
+    },
+    "point": { "y": 136.5, "x": 39.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 3",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "24K",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "1%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 4",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "18K",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "1%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 5",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "47K",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "1%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 136.5, "x": 39.0, "z": 23 },
+    "name": "SripFeeder 6",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "12pF",
+      "voltage": "50V",
+      "package": "0603",
+      "type": "capacitor",
+      "tolerance": "5%"
+    },
+    "point": { "y": 136.5, "x": 39.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 136.5, "x": 39.0, "z": 23 },
+    "name": "SripFeeder 7",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "1uF",
+      "voltage": "50V",
+      "package": "0603",
+      "type": "capacitor",
+      "tolerance": "5%"
+    },
+    "point": { "y": 136.5, "x": 39.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 136.5, "x": 39.0, "z": 23 },
+    "name": "SripFeeder 8",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "100nF",
+      "voltage": "10V",
+      "package": "0603",
+      "type": "capacitor",
+      "tolerance": "5%"
+    },
+    "point": { "y": 136.5, "x": 39.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 136.5, "x": 39.0, "z": 23 },
+    "name": "SripFeeder 9",
+    "increment": 3.98,
+    "size": 48,
+    "component": { "value": "BSS84", "package": "SOT23", "type": "nmos" },
+    "point": { "y": 136.5, "x": 39.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 10",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "680R",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "5%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 11",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "10K",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "1%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 12",
+    "increment": 3.98,
+    "size": 48,
+    "component": { "value": "OSG050603", "package": "0603", "type": "led" },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 13",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "PDTC114ET",
+      "package": "SOT23",
+      "type": "transistor"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 14",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "0R",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "1%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 15",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "150R",
+      "package": "0603",
+      "type": "resistor",
+      "tolerance": "5%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  },
+  {
+    "remaining": 48,
+    "type": "strip",
+    "end_point": { "y": 141.6, "x": 37.925, "z": 23 },
+    "name": "SripFeeder 16",
+    "increment": 3.98,
+    "size": 48,
+    "component": {
+      "value": "LL4148",
+      "package": "SOD80",
+      "type": "diode",
+      "tolerance": "5%"
+    },
+    "point": { "y": 139.4, "x": 225.0, "z": 23 }
+  }
+]

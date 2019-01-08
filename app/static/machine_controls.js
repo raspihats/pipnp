@@ -2,7 +2,7 @@ function parseResponse(response) {
   switch (response.status) {
     case "ok":
       if (response.hasOwnProperty("position")) {
-        console.log(response.position);
+        // console.log(response.position);
       }
       break;
     case "error":
@@ -42,36 +42,65 @@ const MACHINE_CONTROLS = (() => {
       positionSocket.emit("home", function(position) {});
     });
 
+    $("#pump").on("click", function(event) {
+      $(this).blur();
+      actuatorsSocket.emit("toggle", "pump", function(data) {});
+    });
+
     // X axis
     jogAttachOnClick("#xUp", (distance, speed) => {
-      return { x: distance, speed: speed };
+      return { x: distance, speed_factor: speed / 100.0 };
     });
     jogAttachOnClick("#xDown", (distance, speed) => {
-      return { x: -distance, speed: speed };
+      return { x: -distance, speed_factor: speed / 100.0 };
     });
 
     // Y axis
     jogAttachOnClick("#yUp", (distance, speed) => {
-      return { y: distance, speed: speed };
+      return { y: distance, speed_factor: speed / 100.0 };
     });
     jogAttachOnClick("#yDown", (distance, speed) => {
-      return { y: -distance, speed: speed };
+      return { y: -distance, speed_factor: speed / 100.0 };
     });
 
     parkAttachOnClick("#xyPark", speed => {
-      return { axis: "xy", speed: speed };
+      return { axis: "xy", speed_factor: speed / 100.0 };
     });
 
     // Z axis
     jogAttachOnClick("#zUp", (distance, speed) => {
-      return { z: distance, speed: speed };
+      return { z: distance, speed_factor: speed / 100.0 };
     });
     jogAttachOnClick("#zDown", (distance, speed) => {
-      return { z: -distance, speed: speed };
+      return { z: -distance, speed_factor: speed / 100.0 };
     });
 
     parkAttachOnClick("#zPark", speed => {
-      return { axis: "z", speed: speed };
+      return { axis: "z", speed_factor: speed / 100.0 };
+    });
+
+    // A axis
+    jogAttachOnClick("#aCcw", (distance, speed) => {
+      return { a: distance, speed_factor: speed / 100.0 };
+    });
+    jogAttachOnClick("#aCw", (distance, speed) => {
+      return { a: -distance, speed_factor: speed / 100.0 };
+    });
+
+    parkAttachOnClick("#aPark", speed => {
+      return { axis: "a", speed_factor: speed / 100.0 };
+    });
+
+    // B axis
+    jogAttachOnClick("#bCcw", (distance, speed) => {
+      return { b: distance, speed_factor: speed / 100.0 };
+    });
+    jogAttachOnClick("#bCw", (distance, speed) => {
+      return { b: -distance, speed_factor: speed / 100.0 };
+    });
+
+    parkAttachOnClick("#bPark", speed => {
+      return { axis: "b", speed_factor: speed / 100.0 };
     });
   }
 

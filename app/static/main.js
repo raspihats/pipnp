@@ -1,4 +1,5 @@
 import MACHINE_CONTROLS from "./machine_controls.js";
+import FEEDERS from "./feeders.js";
 
 // const API = (() => {
 //   let sockets;
@@ -22,8 +23,35 @@ import MACHINE_CONTROLS from "./machine_controls.js";
 //   };
 // })();
 
+function parseResponse(response) {
+  switch (response.status) {
+    case "ok":
+      break;
+    case "error":
+      alert("ERROR: " + response.message);
+      break;
+  }
+}
+
 const GUI = (() => {
   let sockets;
+
+  function attachOnClick(id, operation) {
+    $("#startJob").on("click", function(event) {
+      $(this).blur();
+      let select = $("#jobSelector");
+      sockets.job.emit("start", select.val(), response => {
+        parseResponse(response);
+      });
+    });
+
+    $("#stopJob").on("click", function(event) {
+      $(this).blur();
+      sockets.job.emit("stop", response => {
+        parseResponse(response);
+      });
+    });
+  }
 
   function displayJobList() {
     sockets.job.emit("get", "all", list => {
@@ -142,6 +170,7 @@ const GUI = (() => {
 
   function init(sock) {
     sockets = sock;
+    attachOnClick();
     displayJobList();
 
     // $("#startJob").on("click", function(event) {
@@ -157,16 +186,26 @@ const GUI = (() => {
 
 $(document).ready(function() {
   var sockets = {
-    main: io.connect("/"),
+    status: io.connect("/status"),
     position: io.connect("/position"),
-    job: io.connect("/job")
+    job: io.connect("/job"),
+    feeders: io.connect("/feeders")
   };
 
-  sockets.main.on("log", function(msg) {
-    $("#logTextarea").append(msg.toString() + "\n");
+  // sockets.main.on("log", function(msg) {
+  //   $("#logTextarea").append(msg.toString() + "\n");
+  // });
+
+  sockets.status.on("update", status => {
+    for (let key in status.position) {
+      $("#dro" + key.toUpperCase()).val(
+        parseFloat(status.position[key]).toFixed(3)
+      );
+    }
   });
 
   MACHINE_CONTROLS.init(sockets.position);
+  FEEDERS.init(sockets.feeders);
 
   sockets.position.on("connect", function() {
     GUI.init(sockets);

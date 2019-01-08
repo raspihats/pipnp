@@ -207,9 +207,22 @@
 
 <!---->
 
+{% macro pump_button() -%}
+<button
+  id="pump"
+  type="button"
+  class="btn btn-outline-secondary p-0"
+  style="height: 48px; width: 48px;"
+>
+  <i class="fas fa-dharmachakra fa-2x"></i>
+</button>
+{%- endmacro %}
+
+<!---->
+
 {% macro machine_controls() -%}
 <div class="d-flex flex-row">
-  <div class="px-2">{{ home_button() }}</div>
+  <div class="px-2">{{ home_button() }} {{ pump_button() }}</div>
 
   <div>
     <div class="d-flex flex-row">
